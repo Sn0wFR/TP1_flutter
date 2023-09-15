@@ -8,8 +8,7 @@ class FooterLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.topLeft,
-      color: Colors.white,
-      child: Padding(
+      child: const Padding(
         padding: EdgeInsets.symmetric(
           vertical: 20,
           horizontal: 10,

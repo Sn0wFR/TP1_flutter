@@ -13,8 +13,8 @@ class ChoiceItem extends StatelessWidget {
         color: Colors.grey.withOpacity(0.30),
       ),
       child: Padding(
-        padding: EdgeInsets.all(8),
-        child: Text(this.text),
+        padding: const EdgeInsets.all(8),
+        child: Text(text),
       ),
     );
   }
