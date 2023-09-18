@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:tp1_flutter/choice_item.dart';
 
 class FooterLayout extends StatelessWidget {
-  const FooterLayout({super.key});
+  const FooterLayout({super.key, this.choices = const {}, required this.callback});
+
+  final Map<String, bool> choices;
+  final Function(String choice) callback;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.topLeft,
-      child: const Padding(
-        padding: EdgeInsets.symmetric(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
           vertical: 20,
           horizontal: 10,
         ),
@@ -17,17 +20,19 @@ class FooterLayout extends StatelessWidget {
           direction: Axis.horizontal,
           spacing: 8,
           runSpacing: 4,
-          children: [
-            ChoiceItem(text: "cinema"),
-            ChoiceItem(text: "petanque"),
-            ChoiceItem(text: "fitness"),
-            ChoiceItem(text: "League Of Legends"),
-            ChoiceItem(text: "basket"),
-            ChoiceItem(text: "shopping"),
-            ChoiceItem(text: "programmation"),
-          ],
+          children: choices.entries
+              .map((e) => ChoiceItem(
+                    text: e.key,
+                    isSelected: e.value,
+                    onTap: () => _onItemSelect(e.key),
+                  ))
+              .toList(),
         ),
       ),
     );
+  }
+
+  void _onItemSelect(String choice) {
+    callback(choice);
   }
 }
