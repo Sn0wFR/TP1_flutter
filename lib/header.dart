@@ -4,10 +4,10 @@ import 'package:tp1_flutter/choice_item.dart';
 class HeaderLayout extends StatelessWidget {
   const HeaderLayout({
     super.key,
-    this.choices = const {},
+    this.choices = const [],
   });
 
-  final Map<String, bool> choices;
+  final List<String> choices;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class HeaderLayout extends StatelessWidget {
   }
 
   Widget _drawChoice() {
-    if (!choices.containsValue(true)) {
+    if (choices.isEmpty) {
       return const Text(
         "Cliquez sur les choix en dessous !",
         style: TextStyle(
@@ -61,12 +61,8 @@ class HeaderLayout extends StatelessWidget {
         direction: Axis.horizontal,
         spacing: 8,
         runSpacing: 4,
-        children: choices.entries
-            .where((element) => element.value)
-            .map((e) => ChoiceItem(
-              text: e.key,
-            ))
-            .toList(),
+        children:
+            choices.map((choiceText) => ChoiceItem(text: choiceText)).toList(),
       );
     }
   }

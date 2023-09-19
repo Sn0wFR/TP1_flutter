@@ -30,15 +30,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final Map<String, bool> choices = {
-    "cinema": false,
-    "petanque": false,
-    "fitness": false,
-    "League Of Legend": false,
-    "basket": false,
-    "shopping": false,
-    "programmation": false,
-  };
+  final List<String> selectedChoices = [];
+
+  final List<String> choices = [
+    "cinema",
+    "petanque",
+    "fitness",
+    "League Of Legend",
+    "basket",
+    "shopping",
+    "programmation",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -50,12 +52,13 @@ class _HomeState extends State<Home> {
             Expanded(
               flex: 2,
               child: HeaderLayout(
-                choices: choices,
+                choices: selectedChoices,
               ),
             ),
             Expanded(
               child: FooterLayout(
                 choices: choices,
+                selectedChoices: selectedChoices,
                 callback: _onChoiceSelected,
               ),
             ),
@@ -67,9 +70,9 @@ class _HomeState extends State<Home> {
 
   void _onChoiceSelected(String choice) {
     setState(() {
-      print("before ${choices[choice]}");
-      choices[choice] = choices[choice] == true ? false : true;
-      print("after ${choices[choice]}");
+      selectedChoices.contains(choice)
+          ? selectedChoices.remove(choice)
+          : selectedChoices.add(choice);
     });
   }
 }
