@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:tp1_flutter/footer.dart';
 import 'package:tp1_flutter/header.dart';
